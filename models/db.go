@@ -5,13 +5,13 @@ import (
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
+var Db *gorm.DB
 
 func init() {
 	var error error
-	db, error = gorm.Open(sqlite.Open("diary.db"), &gorm.Config{})
+	Db, error = gorm.Open(sqlite.Open("diary.db"), &gorm.Config{})
 	if error != nil {
 		panic("failed to connect database")
 	}
-	db.AutoMigrate(&Diary{})
+	Db.AutoMigrate(&Diary{})
 }
