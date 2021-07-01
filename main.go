@@ -9,6 +9,7 @@ import (
 func main() {
 	e := echo.New()
 	e.File("/", "public/index.html")
+	e.File("/diaries/new", "public/new.html")
 	e.GET("/diaries", handlers.GetDiaries)
 	e.POST("/diaries/new", handlers.CreateDiary)
 	e.GET("/diaries/:id", handlers.GetDiary)
