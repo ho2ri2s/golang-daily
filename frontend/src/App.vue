@@ -4,6 +4,7 @@ top-page
 
 <script>
 import TopPage from './components/TopPage.vue'
+import 'ress'
 
 export default {
   name: 'App',
