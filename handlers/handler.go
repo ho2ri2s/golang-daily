@@ -9,7 +9,9 @@ import (
 )
 
 func GetDiaries(c echo.Context) error {
-	return c.NoContent(http.StatusNoContent)
+	var diaries = new(models.Diaries)
+	models.Db.Find(diaries)
+	return c.JSON(http.StatusAccepted, diaries)
 }
 
 func CreateDiary(c echo.Context) error {
