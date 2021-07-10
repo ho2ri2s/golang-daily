@@ -2,10 +2,11 @@ package models
 
 import "time"
 
+// https://echo.labstack.com/guide/binding/
 type Diary struct {
-	ID        string `gorm:"primaryKey"`
-	Title     string
-	Content   string
+	ID        int    `gorm:"primaryKey"`
+	Title     string `json:"title" form:"diary_title"`
+	Content   string `json:"content" form:"diary_content"`
 	CreatedAt time.Time
 	UpdateAt  time.Time
 	DeletedAt time.Time `gorm:"index"`
