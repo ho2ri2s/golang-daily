@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -15,16 +14,9 @@ func GetDiaries(c echo.Context) error {
 
 func CreateDiary(c echo.Context) error {
 	diary := new(models.Diary)
-	if err := c.Request().ParseForm(); err != nil {
-		fmt.Println("error")
-	}
-	for key, value := range c.Request().Form {
-		fmt.Printf("%v : %v\n", key, value)
-	}
 	if err := c.Bind(diary); err != nil {
 		return err
 	}
-	fmt.Println(diary)
 	models.Db.Create(diary)
 	return c.JSON(http.StatusCreated, diary)
 }
