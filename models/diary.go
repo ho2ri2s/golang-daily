@@ -19,3 +19,5 @@ type Diary struct {
 	Content   string
 }
 */
+
+type Diaries []Diary
