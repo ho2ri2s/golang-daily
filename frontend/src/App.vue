@@ -1,18 +1,6 @@
 <template lang="pug">
-top-page
+router-view 
 </template>
-
-<script>
-import TopPage from './components/TopPage.vue'
-import 'ress'
-
-export default {
-  name: 'App',
-  components: {
-    TopPage
-  }
-}
-</script>
 
 <style>
 #app {
@@ -21,6 +9,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
