@@ -44,10 +44,17 @@ export default {
   flex-wrap: wrap;
 }
 
+
 .diaries__list__item {
   width: calc(16rem - 2rem);
   margin: 1rem 1rem;
   border: solid 0.1rem;
   border-radius: 0.3rem;
+}
+.diaries__list__item:hover{
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.5s;
+  transform: translateY(-30px);
 }
 </style>
