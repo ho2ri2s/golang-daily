@@ -1,0 +1,52 @@
+@startuml
+title 認証シーケンス図
+actor User  
+
+activate Frontend
+User -> Frontend : Start App and routing to Diaries Page
+
+activate Server
+Frontend -> Server : GET /diaries
+
+Frontend <-- Server : 401 Unauthorized
+Frontend -> Frontend : Routing to /login
+User <-- Frontend : Request to input email and password
+User -> Frontend : Input email and password
+Frontend -> Server : Post /login
+
+activate DB
+Server -> DB : Check if user is exist
+alt user is not exist[Register]
+  Server <-- DB : Certain email is not exist
+  Frontend <-- Server : 404 User Not Found
+  Frontend -> Frontend : Routing to /signup
+  User <-- Frontend : Request to input email and password to register 
+  User -> Frontend : Input email and password
+  Frontend -> Server : POST /signup
+  Server -> Server : Encode password
+  Server -> DB : Insert to DB
+  alt email is already used
+    Server <-- DB : email is already used 
+    Frontend <-- Server : 404 User Not Found
+    User <-- Frontend : Request to input email and password to register 
+    User -> Frontend : Input email and password
+    Frontend -> Server : POST /signup end
+  end
+else password is invalid
+  Server <-- DB : Certain email is exist but not match passwrd
+  Frontend <-- Server : 404 Password is invalid
+  User <-- Frontend : Request to input email password again
+  User -> Frontend : Input email and password
+  Server -> DB : Check if user is exist and sucess to find
+end
+
+Server -> Server : Generate JWT token and Signin with SHA256
+Server -> Server : Create Cookie contains JWT token
+Frontend <-- Server : 200 with jwt
+
+Frontend -> Frontend : Routing to /diaries
+Frontend -> Server : GET /diaries
+Server -> Server : Take JWT from Cookie
+Server -> DB : Access DB to get diaries
+Frontend <-- Server : 200 with diaries
+@enduml
