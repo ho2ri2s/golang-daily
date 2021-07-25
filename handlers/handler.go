@@ -24,8 +24,10 @@ func CreateDiary(c echo.Context) error {
 }
 
 func GetDiary(c echo.Context) error {
-	// todo
-	return c.NoContent(http.StatusNoContent)
+	id := c.Param("id")
+	diary := new(models.Diaries)
+	models.Db.First(diary, id)
+	return c.JSON(http.StatusAccepted, diary)
 }
 
 func UpdateDiary(c echo.Context) error {
