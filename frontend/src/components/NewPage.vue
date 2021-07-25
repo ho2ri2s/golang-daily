@@ -6,7 +6,7 @@ form(@submit.prevent="submit")
     input#title(type="text", v-model="diary_title")
     dt: label(for="content") Content
     textarea#content(type="text", v-model="diary_content")
-    MainButton(type="submit", value="Create")
+    MainButton(value="Create")
 </template>
 
 <script>
