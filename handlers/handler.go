@@ -20,7 +20,7 @@ func CreateDiary(c echo.Context) error {
 		return err
 	}
 	models.Db.Create(diary)
-	return c.Redirect(http.StatusMovedPermanently, "/diaries")
+	return c.JSON(http.StatusOK, diary)
 }
 
 func GetDiary(c echo.Context) error {
