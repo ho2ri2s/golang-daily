@@ -25,7 +25,7 @@ func CreateDiary(c echo.Context) error {
 
 func GetDiary(c echo.Context) error {
 	id := c.Param("id")
-	diary := new(models.Diaries)
+	diary := new(models.Diary)
 	models.Db.First(diary, id)
 	return c.JSON(http.StatusAccepted, diary)
 }
